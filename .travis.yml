@@ -8,3 +8,15 @@ before_install:
 script:
   - docker run test_image npm run test -- --coverage
   
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "spsl-docker-react"
+  env: "SpslDockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-481048757860"
+  bucket_path: "spsl-docker-react"
+  on: 
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
